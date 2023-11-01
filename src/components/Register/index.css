@@ -1,14 +1,15 @@
-.login-container {
+.register-container {
   display: flex;
   height: 100vh;
   justify-content: space-evenly;
   align-items: center;
   background-size: 100% 100% !important;
   background-color: #7d898590;
+  padding: 20px;
 }
 
 .register-card {
-  height: 450px;
+  height: 480px;
   width: 400px;
   border-radius: 12px;
   padding: 16px 25px;
@@ -18,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   /* backdrop-filter: blur(9); */
 }
 
@@ -46,12 +47,23 @@
 .register-input-container {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 0px;
 }
 
 .register-input-label {
   font-weight: bold;
-  font-size: 13px;
+  font-size: 10px;
+  margin-bottom: 4px;
+  margin-top: 2px;
+  /* position: relative;
+  top: 7px;
+  left: 4px; */
+  /* background-color: #555;
+  color: #ffffff; */
+  /* padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 9px;
+  width: max-content; */
 }
 .input {
   outline: none;
@@ -64,7 +76,7 @@
 .form-btn {
   all: unset;
   color: #ffffff;
-  background-color: rgb(46, 94, 207);
+  background-color: rgb(53, 97, 221);
   border-radius: 5px;
   padding: 8px;
   margin-top: 8px;
@@ -73,14 +85,25 @@
 
 .note-text {
   margin: 0;
+  margin-top: 8px;
+  font-size: 13px;
 }
 
 .link-item {
   all: unset;
   text-align: center;
-  color: blue;
+  color: rgb(4, 97, 246);
   text-decoration: underline;
+  cursor: pointer;
+  font-size: 15px;
 }
 .account {
   text-align: center;
+}
+
+.error-text {
+  margin: 0;
+  height: 12px;
+  font-size: 12px;
+  color: rgb(243, 56, 56);
 }

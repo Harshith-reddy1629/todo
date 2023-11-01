@@ -5,6 +5,8 @@
   align-items: center;
   background-size: 100% 100% !important;
   background-color: #7d898590;
+  /* box-sizing: border-box; */
+  padding: 20px;
 }
 
 .login-card {
@@ -80,7 +82,20 @@
   text-align: center;
   color: blue;
   text-decoration: underline;
+  display: flex;
+  align-items: center;
 }
 .account {
   text-align: center;
+}
+
+@media (max-width: 900px) {
+  .image-container {
+    display: none;
+  }
+  .login-container {
+    height: 100vh;
+  }
+  .login-card {
+  }
 }

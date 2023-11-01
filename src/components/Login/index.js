@@ -6,7 +6,7 @@ import "./index.css";
 
 const Login = () => (
   <div className="login-container">
-    <div>
+    <div className="image-container">
       <img
         src="https://cdni.iconscout.com/illustration/premium/thumb/todo-list-6114062-5059486.png"
         alt="login"
@@ -36,7 +36,7 @@ const Login = () => (
       </form>
       <div className="account">
         <p className="note-text">Don't have an account?</p>
-        <Link className="link-item" to="/register">
+        <Link className="link-item" to="/user/register">
           Register
         </Link>
       </div>
