@@ -6,6 +6,8 @@
   background-size: 100% 100% !important;
   background-color: #7d898590;
   padding: 20px;
+  /* background: linear-gradient(#11111130, #11111130),
+    url("https://www.teahub.io/photos/full/95-959676_simple-and-minimalist-wallpapers-data-src-shades-of.jpg"); */
 }
 
 .register-card {
@@ -25,7 +27,7 @@
 
 .login-logo {
   height: 45px;
-  /* filter: drop-shadow(2px 2px 4px rgb(129, 129, 129)); */
+  filter: drop-shadow(1px 1px 3px rgb(102, 102, 102));
 }
 .login-image {
   position: relative;
@@ -96,6 +98,7 @@
   text-decoration: underline;
   cursor: pointer;
   font-size: 15px;
+  font-weight: 600;
 }
 .account {
   text-align: center;
@@ -104,6 +107,22 @@
 .error-text {
   margin: 0;
   height: 12px;
+  font-weight: 500;
   font-size: 12px;
   color: rgb(243, 56, 56);
+}
+.success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 10px;
+  align-items: center;
+}
+.successful-reg-btn {
+  all: unset;
+  color: #ffffff;
+  background-color: rgb(32, 105, 129);
+  padding: 8px 30px;
+  border-radius: 5px;
 }

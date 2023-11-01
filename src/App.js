@@ -5,18 +5,29 @@ import "./App.css";
 import "./animations.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Home from "./components/Home";
 
 const App = () => {
-  const isValidUser = !Cookies.get("jwt_token");
+  const isNotValidUser = !Cookies.get("jwt_token");
 
   return (
     <Routes>
-      <Route exact path="/user">
-        <Route exact path="login" element={<Login />} />
-        <Route exact path="register" element={<Register />} />
-      </Route>
+      <Route
+        exact
+        path="/user/login"
+        element={isNotValidUser ? <Login /> : <Navigate to="/" />}
+      />
+      <Route
+        exact
+        path="/user/register"
+        element={isNotValidUser ? <Register /> : <Navigate to="/" />}
+      />
 
-      <Route exact path="/" element={<Navigate to="/user/login" />} />
+      <Route
+        exact
+        path="/"
+        element={isNotValidUser ? <Navigate to="/user/login" /> : <Home />}
+      />
     </Routes>
   );
 };

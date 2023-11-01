@@ -1,0 +1,6 @@
+{
+  "inProgress": "INPROGRESS",
+  "failed": "FAILED",
+  "success": "SUCCESS",
+  "errConnection": "ERRCONNECTION"
+}

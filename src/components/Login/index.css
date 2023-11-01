@@ -31,7 +31,7 @@
 .login-image {
   position: relative;
   filter: drop-shadow(0px 6px 6px rgb(107, 103, 103));
-  top: 0;
+  top: 0px;
   animation: loginImage 3s linear infinite;
 }
 
@@ -40,15 +40,15 @@
   /* height: 100%; */
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-top: 20px;
-  padding-bottom: 15px;
+  gap: 14px;
+  padding-top: 16px;
+  padding-bottom: 5px;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
 }
 
 .input-label {
@@ -66,11 +66,14 @@
 .form-btn {
   all: unset;
   color: #ffffff;
-  background-color: rgb(46, 94, 207);
+  background-color: rgb(8, 80, 250);
   border-radius: 5px;
   padding: 8px;
-  margin-top: 8px;
+  margin-top: 3px;
   text-align: center;
+}
+.form-btn:active {
+  background-color: rgb(71, 109, 199);
 }
 
 .note-text {
@@ -98,4 +101,9 @@
   }
   .login-card {
   }
+}
+.login-btn-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
