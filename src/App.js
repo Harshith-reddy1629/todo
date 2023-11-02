@@ -1,14 +1,21 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 
 import "./App.css";
 import "./animations.css";
+import { useState, useEffect } from "react";
+
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 
 const App = () => {
-  const isNotValidUser = !Cookies.get("jwt_token");
+  const [isNotValidUser, setValidator] = useState(!Cookies.get("jwt_token"));
+
+  const Location = useLocation();
+  useEffect(() => {
+    setValidator(!Cookies.get("jwt_token"));
+  }, [Location]);
 
   return (
     <Routes>

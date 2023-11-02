@@ -1,0 +1,15 @@
+.item-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #333;
+  margin: 4px;
+  padding: 5px;
+}
+.item-container:hover {
+  /* scale: 101% 103%; */
+}
+
+.check-input {
+  width: 18px;
+  height: 18px;
+}
