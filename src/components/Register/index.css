@@ -16,7 +16,7 @@
   border-radius: 12px;
   padding: 16px 25px;
   /* border: 1px solid rgb(125, 125, 125); */
-  box-shadow: 0 0 12px #999;
+  box-shadow: 0 0 12px #999, 6px 6px 1px #333;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;

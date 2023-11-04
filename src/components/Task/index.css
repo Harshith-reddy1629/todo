@@ -2,14 +2,99 @@
   display: flex;
   align-items: center;
   border: 1px solid #333;
-  margin: 4px;
-  padding: 5px;
+  margin: 6px 4px;
+  padding: 8px;
+  gap: 8px;
+  border-radius: 6px;
+  box-shadow: 0px 1px 3px rgb(148, 148, 148);
+  /* padding-right: 12px; */
 }
 .item-container:hover {
   /* scale: 101% 103%; */
+}
+.task-name-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 50%;
+}
+.select-input {
+  width: 12%;
+  padding: 6px;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 2px 2px 3px #555;
+}
+.note-input {
+  border-radius: 4px;
+  padding: 6px;
+  outline: none;
+  width: 20%;
+  border: 1px solid rgb(137, 137, 137);
+}
+.task-option {
+  font-size: 14px;
+  padding: 0px !important;
 }
 
 .check-input {
   width: 18px;
   height: 18px;
+}
+
+.task-label {
+  font-weight: 600;
+}
+
+.ud-op-container {
+  width: 13%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+.ud-op-btn {
+  all: unset;
+}
+.ud-op-btn:hover {
+  scale: 110%;
+}
+.task-info {
+  position: relative;
+}
+.info-container {
+  position: absolute;
+
+  bottom: 22px;
+  right: -52px;
+  background-color: #ccc;
+  width: 120px;
+  text-align: center;
+  padding: 4px;
+}
+.info {
+  /* position: relative; */
+  font-size: 10px;
+
+  margin: 0;
+  padding: 0;
+  background-color: #555;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* top: 15px; */
+}
+.info::before {
+  position: absolute;
+
+  top: 8px;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: #555;
+  transform: rotate(45deg);
+}
+
+.task-info:hover .info {
+  display: block;
 }
