@@ -9,7 +9,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const submitForm = async (formValues) => {
-    let url = "http://localhost:8001/login";
+    // let url = "http://localhost:8001/login";
+    let url = process.env.REACT_APP_PROJECT_API + "/login";
 
     let options = {
       method: "POST",

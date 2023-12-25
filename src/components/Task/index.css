@@ -1,100 +1,104 @@
 .item-container {
-  display: flex;
-  align-items: center;
   border: 1px solid #333;
-  margin: 6px 4px;
-  padding: 8px;
-  gap: 8px;
-  border-radius: 6px;
-  box-shadow: 0px 1px 3px rgb(148, 148, 148);
-  /* padding-right: 12px; */
-}
-.item-container:hover {
-  /* scale: 101% 103%; */
-}
-.task-name-container {
+  padding: 0.5rem;
+  gap: 12px 10px;
   display: flex;
-  gap: 8px;
   align-items: center;
-  width: 50%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 6px;
 }
+
+.task-name-container {
+  width: 70%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+}
+.options-container {
+  display: flex;
+  gap: 10px;
+  flex: 1 1;
+}
+
+.delete-info-container {
+  display: flex;
+  gap: 12px;
+  /* flex-grow: 1; */
+}
+
 .select-input {
-  width: 12%;
   padding: 6px;
-  border-radius: 4px;
+  border: 1px solid #888;
   outline: none;
-  box-shadow: 2px 2px 3px #555;
+  border-radius: 6px;
+  /* flex-grow: 1; */
 }
 .note-input {
-  border-radius: 4px;
-  padding: 6px;
+  padding: 6px 12px;
+  border: none;
   outline: none;
-  width: 20%;
-  border: 1px solid rgb(137, 137, 137);
+  border-radius: 6px;
+
+  flex: 1 1;
+  max-width: 500px;
 }
 .task-option {
-  font-size: 14px;
-  padding: 0px !important;
 }
 
 .check-input {
-  width: 18px;
-  height: 18px;
+  padding: 0%;
+  margin: 0px 8px;
+
+  outline: none;
+}
+.check-input:checked {
 }
 
 .task-label {
-  font-weight: 600;
+  font-size: 18px;
 }
 
 .ud-op-container {
-  width: 13%;
+}
+.update-btn,
+.delete-btn {
+  padding: 8px 12px;
+  background-color: rgb(0 0 0/10%);
+  border-radius: 6px;
+  border: none;
+  outline: none;
   display: flex;
-  justify-content: space-evenly;
+  text-align: center;
+  justify-content: center;
+  gap: 6px;
   align-items: center;
-  gap: 10px;
+  flex-grow: 1;
 }
-.ud-op-btn {
-  all: unset;
-}
+
 .ud-op-btn:hover {
-  scale: 110%;
 }
 .task-info {
-  position: relative;
 }
-.info-container {
-  position: absolute;
 
-  bottom: 22px;
-  right: -52px;
-  background-color: #ccc;
-  width: 120px;
-  text-align: center;
-  padding: 4px;
-}
 .info {
-  /* position: relative; */
-  font-size: 10px;
-
-  margin: 0;
-  padding: 0;
-  background-color: #555;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* top: 15px; */
 }
-.info::before {
-  position: absolute;
-
-  top: 8px;
-  content: "";
-  width: 15px;
-  height: 15px;
-  background-color: #555;
-  transform: rotate(45deg);
+.task-info .info {
+}
+.task-info .info::after {
 }
 
 .task-info:hover .info {
-  display: block;
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 576px) {
+  .mb-disable {
+    display: none;
+  }
+
+  .delete-info-container {
+    flex-grow: 1;
+  }
 }

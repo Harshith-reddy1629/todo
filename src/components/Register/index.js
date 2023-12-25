@@ -14,7 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const SubmitForm = async (formValues) => {
-    let url = "http://localhost:8001/register/";
+    let url = `${process.env.REACT_APP_PROJECT_API}/register/`;
 
     let options = {
       method: "POST",
