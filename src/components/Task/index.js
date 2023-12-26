@@ -137,9 +137,6 @@ const TaskItem = (props) => {
       console.log("object");
     }
   };
-  //   useEffect(() => {
-  //     updatetask();
-  //   }, [Status]);
 
   const deleteTask = async () => {
     let url = process.env.REACT_APP_PROJECT_API + `/todo/${_id}`;
