@@ -15,6 +15,7 @@
   max-width: 600px;
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 .options-container {
   display: flex;
@@ -39,12 +40,36 @@
   padding: 6px 12px;
   border: none;
   outline: none;
-  border-radius: 6px;
-
+  width: 100%;
+}
+.note-container {
   flex: 1 1;
+  display: flex;
+  border-radius: 6px;
   max-width: 500px;
+  overflow: hidden;
+  position: relative;
+}
+.note-btn {
+  position: absolute;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: rgb(199, 193, 193);
+  padding: 0% 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
 }
 .task-option {
+}
+
+.star-btn {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .check-input {
@@ -58,6 +83,7 @@
 
 .task-label {
   font-size: 18px;
+  text-transform: capitalize;
 }
 
 .ud-op-container {

@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import {
+  MdOutlineDoneOutline,
+  MdOutlineStar,
+  MdOutlineStarBorder,
+} from "react-icons/md";
 // import { CiCircleInfo } from "react-icons/ci";
 import "./index.css";
 import Cookies from "js-cookie";
@@ -12,28 +17,42 @@ const ExPlaceholders = [
 
 const TaskItem = (props) => {
   const { item, fetchData } = props;
-  console.log("item", item);
-  const { task, _id, status } = item;
+
+  const { task, _id, status, note, selected } = item;
+
   const [Status, setStatus] = useState(status);
-  const oneOfPH = ExPlaceholders[Math.floor(Math.random() * 3)];
+
+  const [rename, setName] = useState(false);
+
+  const [Task, setTask] = useState(task);
+
+  const [Selected, setSelected] = useState(selected);
+
+  const [Note, setNote] = useState(note);
+
+  const [fetchStatus, setFetchStatus] = useState("Success");
+
   const token = Cookies.get("jwt_token");
 
-  const updatetask = async (event) => {
+  const oneOfPH = ExPlaceholders[Math.floor(Math.random() * 3)];
+
+  const updateTask = async (event) => {
     let url = process.env.REACT_APP_PROJECT_API + `/todo/${_id}`;
+
     let options = {
       method: "PUT",
       headers: {
         Accept: "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         Authorization: `Bearer ${token}`,
 
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        task: "test",
+        task: Task,
         status: Status,
         selected: true,
-        note: "imp",
+        note: Note,
       }),
     };
 
@@ -41,7 +60,78 @@ const TaskItem = (props) => {
       const response = await fetch(url, options);
 
       if (response.ok) {
-        fetchData();
+        // fetchData();
+        fetchTask();
+      }
+    } catch (error) {
+      console.log("object");
+    }
+  };
+
+  const fetchTask = async () => {
+    setFetchStatus("Loading");
+
+    const Url = process.env.REACT_APP_PROJECT_API + `/todo/${_id}`;
+
+    const token = Cookies.get("jwt_token");
+
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(Url, options);
+      const result = await response.json();
+      if (response.ok) {
+        console.log(result);
+        setNote(result.note);
+        setStatus(result.status);
+        setTask(result.task);
+        setSelected(result.selected);
+        setName(false);
+
+        setFetchStatus("Success");
+        // console.log("1", result);
+      } else {
+        setFetchStatus("Failed");
+      }
+    } catch (error) {
+      setFetchStatus("Failed");
+    }
+  };
+
+  const updateStatus = async (event) => {
+    setStatus(event.target.value);
+    // console.log(event.target.value);
+    let url = process.env.REACT_APP_PROJECT_API + `/todo/${_id}`;
+    let options = {
+      method: "PUT",
+      headers: {
+        Accept: "*/*",
+        // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        Authorization: `Bearer ${token}`,
+
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        task: Task,
+        status: event.target.value,
+        selected: true,
+        note: Note,
+      }),
+    };
+
+    try {
+      const response = await fetch(url, options);
+
+      if (response.ok) {
+        fetchTask();
       }
     } catch (error) {
       console.log("object");
@@ -75,45 +165,89 @@ const TaskItem = (props) => {
 
   return (
     <li className="item-container">
-      <div className="task-name-container">
-        <input
-          className="check-input"
-          id={_id}
-          type="checkbox"
-          // checked={selected}
-        />
-        <label className="task-label" htmlFor={_id}>
-          {task}
-        </label>
-      </div>
-      <div className="delete-info-container">
-        <button type="button" className="update-btn">
-          <span className="mb-disable">Rename</span>
-          <AiFillEdit size={12} />
-        </button>
-        <button type="button" onClick={deleteTask} className="delete-btn">
-          <span className="mb-disable">Delete</span>
-          <AiFillDelete size={16} />
-        </button>
-      </div>
-      <div className="options-container">
-        <select
-          value={Status}
-          onChange={(event) => setStatus(event.target.value)}
-          className="select-input"
-        >
-          <option className="task-option" value="todo">
-            todo
-          </option>
-          <option className="task-option" value="inprogress">
-            inprogress
-          </option>
-          <option className="task-option" value="completed">
-            completed
-          </option>
-        </select>
-        <input className="note-input" placeholder={oneOfPH} />
-      </div>
+      {fetchStatus === "Loading" && <p>Updating...</p>}
+      {fetchStatus === "Failed" && <p>Something Is wrong</p>}
+      {fetchStatus === "Success" && (
+        <>
+          <div className="task-name-container">
+            {!Selected ? (
+              <button className="star-btn">
+                <MdOutlineStar color="goldenrod" size="22" />
+              </button>
+            ) : (
+              <button className="star-btn">
+                <MdOutlineStarBorder color="#666" size="22" />
+              </button>
+            )}
+            {rename ? (
+              <input
+                className="note-input"
+                value={Task}
+                onChange={(event) => setTask(event.target.value)}
+                autoFocus
+              />
+            ) : (
+              <label className="task-label" htmlFor={_id}>
+                {Task}
+              </label>
+            )}
+          </div>
+          <div className="delete-info-container">
+            {rename ? (
+              <button type="button" className="update-btn" onClick={updateTask}>
+                <span className="mb-disable">Update</span>
+
+                <MdOutlineDoneOutline size={12} />
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="update-btn"
+                onClick={() => {
+                  setName(!rename);
+                }}
+              >
+                <span className="mb-disable">Rename</span>
+
+                <AiFillEdit size={12} />
+              </button>
+            )}
+            <button type="button" onClick={deleteTask} className="delete-btn">
+              <span className="mb-disable">Delete</span>
+              <AiFillDelete size={16} />
+            </button>
+          </div>
+          <div className="options-container">
+            <select
+              value={Status}
+              onChange={updateStatus}
+              className="select-input"
+            >
+              <option className="task-option" value="todo">
+                todo
+              </option>
+              <option className="task-option" value="inprogress">
+                inprogress
+              </option>
+              <option className="task-option" value="completed">
+                completed
+              </option>
+            </select>
+            <div className="note-container">
+              <input
+                value={Note}
+                onChange={(e) => setNote(e.target.value)}
+                className="note-input"
+                placeholder={oneOfPH}
+              />
+              <button type="button" className="note-btn" onClick={updateTask}>
+                {" "}
+                <MdOutlineDoneOutline size={12} />
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </li>
   );
 };

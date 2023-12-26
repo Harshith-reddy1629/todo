@@ -53,7 +53,7 @@ class Home extends Component {
       method: "POST",
       headers: {
         Accept: "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
