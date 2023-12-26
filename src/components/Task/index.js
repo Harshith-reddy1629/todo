@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import {
   MdOutlineDoneOutline,
@@ -36,7 +36,7 @@ const TaskItem = (props) => {
 
   const oneOfPH = ExPlaceholders[Math.floor(Math.random() * 3)];
 
-  const updateTask = async (event) => {
+  const updateTask = async () => {
     let url = process.env.REACT_APP_PROJECT_API + `/todo/${_id}`;
 
     let options = {
@@ -51,7 +51,7 @@ const TaskItem = (props) => {
       body: JSON.stringify({
         task: Task,
         status: Status,
-        selected: true,
+        selected: Selected,
         note: Note,
       }),
     };
@@ -122,7 +122,7 @@ const TaskItem = (props) => {
       body: JSON.stringify({
         task: Task,
         status: event.target.value,
-        selected: true,
+        selected: Selected,
         note: Note,
       }),
     };
@@ -163,6 +163,38 @@ const TaskItem = (props) => {
     }
   };
 
+  const changeImp = async () => {
+    let url = process.env.REACT_APP_PROJECT_API + `/todo/${_id}`;
+
+    let options = {
+      method: "PUT",
+      headers: {
+        Accept: "*/*",
+        // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        Authorization: `Bearer ${token}`,
+
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        task: Task,
+        status: Status,
+        selected: !Selected,
+        note: Note,
+      }),
+    };
+
+    try {
+      const response = await fetch(url, options);
+
+      if (response.ok) {
+        // fetchData();
+        fetchTask();
+      }
+    } catch (error) {
+      console.log("object");
+    }
+  };
+
   return (
     <li className="item-container">
       {fetchStatus === "Loading" && <p>Updating...</p>}
@@ -170,12 +202,12 @@ const TaskItem = (props) => {
       {fetchStatus === "Success" && (
         <>
           <div className="task-name-container">
-            {!Selected ? (
-              <button className="star-btn">
+            {Selected ? (
+              <button className="star-btn" onClick={changeImp}>
                 <MdOutlineStar color="goldenrod" size="22" />
               </button>
             ) : (
-              <button className="star-btn">
+              <button className="star-btn" onClick={changeImp}>
                 <MdOutlineStarBorder color="#666" size="22" />
               </button>
             )}
@@ -187,9 +219,7 @@ const TaskItem = (props) => {
                 autoFocus
               />
             ) : (
-              <label className="task-label" htmlFor={_id}>
-                {Task}
-              </label>
+              <span className="task-label">{Task}</span>
             )}
           </div>
           <div className="delete-info-container">
