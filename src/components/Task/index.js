@@ -216,7 +216,13 @@ const TaskItem = (props) => {
                 autoFocus
               />
             ) : (
-              <span className="task-label">{Task}</span>
+              <span
+                className={`task-label ${
+                  Status === "completed" && "text-strike"
+                }`}
+              >
+                {Task}
+              </span>
             )}
           </div>
           <div className="delete-info-container">
