@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 
 const App = () => {
   const [isNotValidUser, setValidator] = useState(!Cookies.get("jwt_token"));
@@ -35,6 +36,7 @@ const App = () => {
         path="/"
         element={isNotValidUser ? <Navigate to="/user/login" /> : <Home />}
       />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

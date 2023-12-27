@@ -42,6 +42,7 @@
   outline: none;
   width: 100%;
 }
+
 .note-container {
   flex: 1 1;
   display: flex;
