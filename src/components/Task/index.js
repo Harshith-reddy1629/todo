@@ -194,7 +194,7 @@ const TaskItem = (props) => {
 
   return (
     <li className="item-container">
-      {fetchStatus === "Loading" && <p>Updating...</p>}
+      {fetchStatus === "Loading" && <p className="update-text">Updating...</p>}
       {fetchStatus === "Failed" && <p>Something Is wrong</p>}
       {fetchStatus === "Success" && (
         <>
