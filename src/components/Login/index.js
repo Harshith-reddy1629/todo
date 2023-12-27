@@ -16,7 +16,7 @@ const Login = () => {
       method: "POST",
       headers: {
         Accept: "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formValues),
