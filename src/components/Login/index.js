@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Formik } from "formik";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +8,8 @@ import "./index.css";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const [errorMsg, setError] = useState("");
 
   const submitForm = async (formValues) => {
     // let url = "http://localhost:8001/login";
@@ -33,9 +36,11 @@ const Login = () => {
         });
         navigate("/");
         // window.location.reload();
+      } else {
+        setError(result.errMsg);
       }
     } catch (error) {
-      console.log(error);
+      setError("SomeThing is wrong, Try Again");
     }
   };
 
@@ -80,6 +85,7 @@ const Login = () => {
                   USERNAME
                 </label>
                 <input
+                  onFocus={() => setError("")}
                   type="text"
                   className="input"
                   id="username"
@@ -101,6 +107,7 @@ const Login = () => {
                   type="password"
                   className="input"
                   id="password"
+                  onFocus={() => setError("")}
                   placeholder="password"
                 />{" "}
                 <p className="error-text">
@@ -111,7 +118,7 @@ const Login = () => {
                 <button className="form-btn" type="submit">
                   Login
                 </button>{" "}
-                <p className="error-text"></p>
+                <p className="error-text">{errorMsg}</p>
               </div>
             </form>
           )}
