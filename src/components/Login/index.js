@@ -34,7 +34,7 @@ const Login = () => {
           expires: 30,
           path: "/",
         });
-        navigate("/");
+        navigate("/", { replace: true });
         // window.location.reload();
       } else {
         setError(result.errMsg);
